@@ -5,7 +5,7 @@ var started = false;
 
 $(document).keydown(() => {
     if(started == false){
-        $("h1").text("Level" + level);
+        $("#level-title").text("Level " + level);
         setTimeout(nextSequence, 500);
         started = true;
     }
@@ -13,7 +13,6 @@ $(document).keydown(() => {
 
 function nextSequence(){    
     clickSequence = [];
-    level++;
     var randomNumber = Math.floor(Math.random()*4);
     var colorsArray = ["red", "blue", "green", "yellow"];
     buttonFlash(colorsArray[randomNumber]);
@@ -40,6 +39,8 @@ $(".btn").click((e) => {
 function checkAnswer(currLevel){
     if(clickSequence[currLevel] == colorSeq[currLevel]){
         if(clickSequence.length == colorSeq.length){
+            level++
+            $("#level-title").text("Level " + level);
             setTimeout(() => {
                 nextSequence();
             }, 1000)
